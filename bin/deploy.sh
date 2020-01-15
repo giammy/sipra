@@ -11,8 +11,8 @@ DEPLOY_HOST=`echo $DEPLOY_TO | cut -d':' -f1`
 cd ..
 rm -rf $PROJECT/var/cache/*
 #rsync -a --delete --exclude var/data.db --exclude public/local $PROJECT root@$DEPLOY_TO
-rsync -a --delete --exclude public/local $PROJECT root@$DEPLOY_TO
-#rsync -a --delete $PROJECT root@$DEPLOY_TO
+#rsync -a --delete --exclude public/local $PROJECT root@$DEPLOY_TO
+rsync -a --delete $PROJECT root@$DEPLOY_TO
 ssh root@$DEPLOY_HOST "echo 'APP_ENV=dev' >> /var/www/html/$PROJECT/.env.local"
 ssh root@$DEPLOY_HOST "chown -R apache:apache /var/www/html/$PROJECT"
 
