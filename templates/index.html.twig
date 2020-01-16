@@ -25,13 +25,32 @@
         <a href="http://www3/staff" class="button" style="width:12%">STAFF</a>
         <a href="http://www3/workorder" class="button" style="width:12%">WORKORDER</a>
         </center>
-
-
-
 {#
         <br>
         <a href="{{ path('showall', { 'item': -1 }) }}" class="button" style="width:42%">Mostra lista INTERNA dipendenti</a>
 #}
+      </div>
+    {% endif %}
+
+    {% if userBelongsTo(users_core_cfo, username) %}
+      <div style="border-style: solid; border-color: red">
+        <font size="2">Only for CFO:</font>
+<br>
+List of STAFF
+<br>
+List of WORKORDER
+      </div>
+    {% endif %}
+
+    {% if userBelongsTo(users_core_project_leader, username) %}
+      <div style="border-style: solid; border-color: red">
+        <font size="2">Only for PROJECT LEADER:</font>
+      </div>
+    {% endif %}
+
+    {% if userBelongsTo(users_core_group_leader, username) %}
+      <div style="border-style: solid; border-color: red">
+        <font size="2">Only for GROUP LEADER:</font>
       </div>
     {% endif %}
 

@@ -11,6 +11,13 @@ parameters:
     ldap_password: '%env(resolve:LDAP_SEARCH_PASSWORD)%'
     ldap_search_basedn: '%env(resolve:LDAP_SEARCH_BASEDN)%'
 
+    users_admin: '%env(resolve:USERS_ADMIN)%'
+    users_manager: '%env(resolve:USERS_MANAGER)%'
+    users_it: '%env(resolve:USERS_IT)%'
+    users_core_cfo: '%env(resolve:USERS_CORE_CFO)%'
+    users_core_project_leader: '%env(resolve:USERS_CORE_PROJECT_LEADER)%'
+    users_core_group_leader: '%env(resolve:USERS_CORE_GROUP_LEADER)%'
+
 services:
     # default configuration for services in *this* file
     _defaults:
