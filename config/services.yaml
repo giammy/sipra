@@ -5,6 +5,12 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
 
+    ldap_server: '%env(resolve:LDAP_SERVER)%'
+    ldap_server_port: '%env(resolve:LDAP_SERVER_PORT)%'
+    ldap_user: '%env(resolve:LDAP_SEARCH_USER)%'
+    ldap_password: '%env(resolve:LDAP_SEARCH_PASSWORD)%'
+    ldap_search_basedn: '%env(resolve:LDAP_SEARCH_BASEDN)%'
+
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -25,3 +31,15 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    # config/services.yaml - LDAP
+    Symfony\Component\Ldap\Ldap:
+        arguments: ['@Symfony\Component\Ldap\Adapter\ExtLdap\Adapter']
+    Symfony\Component\Ldap\Adapter\ExtLdap\Adapter:
+        arguments:
+            -   host: '%env(resolve:LDAP_SERVER)%'
+                port: '%env(resolve:LDAP_SERVER_PORT)%'
+                # encryption: tls
+                options:
+                    protocol_version: '%env(resolve:LDAP_VERSION)%'
+                    referrals: false
