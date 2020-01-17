@@ -1,0 +1,119 @@
+{% extends 'baseroot.html.twig' %}
+
+{% block title %}Staff - Showall{% endblock %}
+
+{% block javascripts %}
+  <script>
+    // initialization and configuration
+    $(document).ready( function () {
+        $('#staffShowallTable').dataTable( {
+              "fixedHeader": true,
+              "lengthMenu": [ 1000, 100, 75, 50, 25, 10 ]
+              //"info":     false, // remove header and footer
+              //"ordering": false,
+              //"bPaginate": false,
+              //"sDom": 'T<"clear">lfrtip'
+        } ); // end dataTable
+    } ); // end ready function
+    // END initialization and configuration
+  </script>
+{% endblock %}
+
+
+{% block body %}
+
+<table id="staffShowallTable">
+  <thead>
+    <tr>
+      <td></td>
+      <td>Surname</td>
+      <td>Name</td>
+      <td>Group</td>
+      <td>Capog.</td>
+      <td>Qual</td>
+      <td>Org</td>
+{#
+      <td>Contr.H</td>
+      <td>Ptime</td>
+#}
+      <td>Av.H</td>
+      <td>T.s</td>
+      <td>Valid From</td>
+      <td>Valid To</td>
+      {% if userBelongsTo(users_admin, username) %}
+      <td></td>
+      {% endif %}
+      <td>E-mail</td>
+      <td>Username</td>
+      {% if userBelongsTo(users_admin, username) %}
+      <td>Id</td>
+      <td>Note</td>
+      <td>Secondary E-mail</td>
+      <td>Create Date</td>
+      <td>Version</td>
+      <td>Office Phone</td>
+      <td>Office Mobile</td>
+      <td>Office Location</td>
+      <td>Last Change Atuthor</td>
+      <td>Last Change Date</td>
+      <td>Internal Note</td>
+      {% endif %}
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for ar in list %}
+    <tr>
+      <td>        
+{#
+        <a href="{{ path('editUser', { 'id': ar.id }) }}">
+          <img src="{{ asset('images/icon-edit.svg') }}" alt="edit" height="24" style="float:left"></img>
+        </a>
+#}
+      </td>
+      <td> {{ ar.surname }} </td>
+      <td> {{ ar.name }} </td>
+      <td> {{ ar.groupName }} </td>
+      <td> {{ ar.leaderOfGroup }} </td>
+      <td> {{ ar.qualification }} </td>
+      <td> {{ ar.organization }} </td>
+{#
+      <td> {{ ar.totalContractualHoursPerYear }} </td>
+      <td> {{ ar.parttimePercent }} </td>
+#}
+      <td> <font color="gray">({{ ar.totalContractualHoursPerYear }}*{{ ar.parttimePercent|number_format(2, '.', '') }}=)</font>{{ ar.totalHoursPerYear }} </td>
+
+{#
+      <td> {% if ar.isTimesheetEnabled %} YES {% else %} NO {% endif %} </td>
+#}
+      <td> {{ ar.validFrom|date('d/m/Y') }} </td>
+      <td> {{ ar.validTo|date('d/m/Y') }} </td>
+      {% if userBelongsTo(users_admin, username) %}
+{#
+      <td>
+        <a href="{{ path('editUser', { 'id': ar.id }) }}">
+          <img src="{{ asset('images/icon-delete.svg') }}" alt="edit" height="24" style="float:left"></img>
+      </td>
+#}
+      {% endif %}
+      <td> {{ ar.email }} </td>
+      <td> {{ ar.username }} </td>
+      {% if userBelongsTo(users_admin, username) %}
+      <td> {{ ar.id }} </td>
+      <td> {{ ar.note }} </td>
+      <td> {{ ar.secondaryEmail }} </td>
+      <td> {{ ar.created|date('d/m/Y') }} </td>
+      <td> {{ ar.version }} </td>
+      <td> {{ ar.officePhone }} </td>
+      <td> {{ ar.officeMobile }} </td>
+      <td> {{ ar.officeLocation }} </td>
+      <td> {{ ar.lastChangeAuthor }} </td>
+      <td> {{ ar.lastChangeDate|date('Ymd-Hise') }} </td>
+      <td> {{ ar.internalNote }} </td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}
