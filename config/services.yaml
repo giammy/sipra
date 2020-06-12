@@ -14,9 +14,11 @@ parameters:
     users_admin: '%env(resolve:USERS_ADMIN)%'
     users_manager: '%env(resolve:USERS_MANAGER)%'
     users_it: '%env(resolve:USERS_IT)%'
-    users_core_cfo: '%env(resolve:USERS_CORE_CFO)%'
+    users_cfo: '%env(resolve:USERS_CFO)%'
     users_core_project_leader: '%env(resolve:USERS_CORE_PROJECT_LEADER)%'
     users_core_group_leader: '%env(resolve:USERS_CORE_GROUP_LEADER)%'
+
+    api_password_staff_clear: '%env(resolve:API_PASSWORD_STAFF_CLEAR)%'
 
 services:
     # default configuration for services in *this* file

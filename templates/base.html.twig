@@ -8,7 +8,7 @@
     <script type="text/javascript" src="{{ asset('DataTables/datatables.min.js') }}"></script>
     <link rel="stylesheet" type="text/css" href="{{ asset('DataTables/datatables.min.css') }}"/>
 
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css"> 
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css"/> 
     {% block stylesheets %}{% endblock %}
   </head>
   <body>
@@ -32,7 +32,7 @@
         {% if userBelongsTo(users_admin, app.user.username) %} <font color="red">ADMIN</font> --- {% endif %}
         {% if userBelongsTo(users_manager, app.user.username) %} <font >MANAGER</font> --- {% endif %}
         {% if userBelongsTo(users_it, app.user.username) %} <font >IT</font> --- {% endif %}
-        {% if userBelongsTo(users_core_cfo, app.user.username) %} <font >CFO</font> --- {% endif %}
+        {% if userBelongsTo(users_cfo, app.user.username) %} <font >CFO</font> --- {% endif %}
         {% if userBelongsTo(users_core_project_leader, app.user.username) %} <font >PROJECT leader</font> --- {% endif %}
         {% if userBelongsTo(users_core_group_leader, app.user.username) %} <font >GROUP leader</font> --- {% endif %}
         User: {{ app.user.username }} ---

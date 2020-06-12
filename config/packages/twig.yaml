@@ -10,6 +10,6 @@ twig:
         users_it: '%env(USERS_IT)%'
         users_ufficio_personale: '%env(USERS_UFFICIO_PERSONALE)%'
         users_newaccount_admin: '%env(USERS_NEWACCOUNT_ADMIN)%'
-        users_core_cfo: '%env(USERS_CORE_CFO)%'
+        users_cfo: '%env(USERS_CFO)%'
         users_core_project_leader: '%env(USERS_CORE_PROJECT_LEADER)%'
         users_core_group_leader: '%env(USERS_CORE_GROUP_LEADER)%'

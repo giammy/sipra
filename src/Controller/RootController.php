@@ -54,10 +54,13 @@ class RootController extends AbstractController
 
 // Display the result
 
+
+
 $headers = array('Accept' => 'application/json');
-\Unirest\Request::auth('api', 'api');
+\Unirest\Request::auth('api', $this->params->get('api_password_staff_clear'));
 $query = array();
-$response = \Unirest\Request::get('http://www3/staff/api/staff', $headers, $query);
+//$response = \Unirest\Request::get('http://www3/staff/api/staff', $headers, $query);
+$response = \Unirest\Request::get('https://portal.igi.cnr.it/staff/api/staff', $headers, $query);
 // response->code
 // response->raw_body
 // response->body
@@ -79,8 +82,9 @@ $response = \Unirest\Request::get('http://www3/staff/api/staff', $headers, $quer
 	$item=intval($item);
 
         $username = $this->get('security.token_storage')->getToken()->getUser()->getUsername();
-	$allowedUsers = preg_split('/, */', $this->params->get('users_core_cfo'));
-        if (in_array($username, $allowedUsers)) {
+	$allowedUsers = preg_split('/, */', $this->params->get('users_cfo'));
+//var_dump($allowedUsers);exit;
+	if (in_array($username, $allowedUsers)) {
             $appLogger->info("IN: showallAction: username='" . $username . "' allowed");
 
             $dateNow = new \DateTime();
