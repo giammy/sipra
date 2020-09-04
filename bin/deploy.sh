@@ -4,8 +4,8 @@ if [ ! -f .env.local ]; then
   exit 0;
 fi 
 
-PROJECT=`grep PROJECT_DIRECTORY .env.local | head -n 1 | cut -d'=' -f2`
-DEPLOY_TO=`grep DEPLOY_HOST .env.local | cut -d'=' -f2`
+PROJECT=`grep ^PROJECT_DIRECTORY .env.local | head -n 1 | cut -d'=' -f2`
+DEPLOY_TO=`grep ^DEPLOY_HOST .env.local | cut -d'=' -f2`
 DEPLOY_HOST=`echo $DEPLOY_TO | cut -d':' -f1`
 
 echo "Deploy $PROJECT"
